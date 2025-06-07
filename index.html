@@ -25,11 +25,25 @@
       margin-top: 0.5rem;
       color: #666;
     }
-    section.hero {
-      background: url('hero.jpg') center/cover no-repeat;
-      height: 300px;
-      width: 100%;
-    }
+    section..hero-carousel {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+.hero-carousel img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+.hero-carousel img.active {
+  opacity: 1;
+  z-index: 1;
     section.description {
       padding: 2rem;
       max-width: 800px;
@@ -92,7 +106,50 @@
     <h1>The Cottage Auchenblae</h1>
     <p>"Nestled between the Cairngorm mountains and the sandy shores of the North East"</p>
   </header>
-  <section class="hero"></section>
+  <!-- HERO CAROUSEL SECTION -->
+<div class="hero-carousel">
+  <img src="hero1.jpg" class="active" alt="Hero image 1">
+  <img src="hero2.jpg" alt="Hero image 2">
+  <img src="hero3.jpg" alt="Hero image 3">
+  <img src="hero4.jpg" alt="Hero image 4">
+  <img src="hero5.jpg" alt="Hero image 5">
+</div>
+
+<style>
+  .hero-carousel {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+  }
+  .hero-carousel img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  .hero-carousel img.active {
+    opacity: 1;
+    z-index: 1;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const heroImages = document.querySelectorAll('.hero-carousel img');
+    let heroIndex = 0;
+    setInterval(() => {
+      heroImages[heroIndex].classList.remove('active');
+      heroIndex = (heroIndex + 1) % heroImages.length;
+      heroImages[heroIndex].classList.add('active');
+    }, 4000);
+  });
+</script>
+
   <section class="description">
     <h2>Welcome</h2>
     <p>
