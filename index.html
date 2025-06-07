@@ -102,7 +102,50 @@
   <section class="calendar">
     <h2>Availability Calendar</h2>
     <p>View available dates below (synced from Airbnb):</p>
-    <iframe src="https://calendar.google.com" title="Availability Calendar Placeholder"></iframe>
+    <!-- Include FullCalendar CSS and JS -->
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+
+<!-- Include ical.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ical.js/1.4.0/ical.min.js"></script>
+
+<!-- Calendar Container -->
+<div id='calendar'></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Fetch the iCal data
+    fetch('https://www.airbnb.co.uk/calendar/ical/770028233462793407.ics?s=1119439d69cfa8e9c91961d6762542a6')
+      .then(response => response.text())
+      .then(data => {
+        // Parse the iCal data
+        const jcalData = ICAL.parse(data);
+        const comp = new ICAL.Component(jcalData);
+        const vevents = comp.getAllSubcomponents('vevent');
+
+        // Convert vevents to FullCalendar event objects
+        const events = vevents.map(vevent => {
+          const event = new ICAL.Event(vevent);
+          return {
+            title: 'Booked',
+            start: event.startDate.toString(),
+            end: event.endDate.toString(),
+            allDay: true,
+            color: '#ff0000' // Red color for booked dates
+          };
+        });
+
+        // Initialize FullCalendar
+        const calendarEl = document.getElementById('calendar');
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          events: events
+        });
+        calendar.render();
+      });
+  });
+</script>
+
   </section>
   <section class="booking-form">
     <h2>Make a Booking Enquiry</h2>
