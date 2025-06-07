@@ -38,10 +38,12 @@
     .calendar {
       padding: 2rem;
       background-color: #f4f4f4;
+      text-align: center;
     }
     .calendar iframe {
       border: none;
       width: 100%;
+      max-width: 700px;
       height: 600px;
     }
     .booking-form {
@@ -57,10 +59,13 @@
       flex-direction: column;
       gap: 1rem;
     }
-    .booking-form input, .booking-form textarea {
+    .booking-form input, .booking-form textarea, .booking-form select {
       padding: 0.75rem;
       border: 1px solid #ccc;
       border-radius: 6px;
+    }
+    .booking-form label {
+      font-weight: bold;
     }
     .booking-form button {
       background-color: #e6b800;
@@ -95,25 +100,38 @@
     </p>
   </section>
   <section class="calendar">
-    <h2 style="text-align: center;">Availability Calendar</h2>
-    <div class="calendar">
-  <h2 style="text-align: center;">Availability Calendar</h2>
-  <div class="airbnb-embed-frame" data-id="770028233462793407" data-view="home" data-hide-price="true" style="width: 100%; max-width: 450px; height: 300px; margin: auto;">
-    <a href="https://www.airbnb.co.uk/rooms/770028233462793407?guests=1&amp;adults=1&amp;s=66&amp;source=embed_widget">View on Airbnb</a>
-    <a href="https://www.airbnb.co.uk/rooms/770028233462793407?guests=1&amp;adults=1&amp;s=66&amp;source=embed_widget" rel="nofollow">
-      Cottage in Auchenblae · ★4.93 · 1 bedroom · 1 bed · 1 bathroom
-    </a>
-    <script async src="https://www.airbnb.co.uk/embeddable/airbnb_jssdk"></script>
-  </div>
-</div>
+    <h2>Availability Calendar</h2>
+    <p>View available dates below (synced from Airbnb):</p>
+    <iframe src="https://calendar.google.com" title="Availability Calendar Placeholder"></iframe>
   </section>
   <section class="booking-form">
     <h2>Make a Booking Enquiry</h2>
-    <form action="mailto:your@email.com" method="POST" enctype="text/plain">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="6" placeholder="Tell us your preferred dates, number of guests, and any special requirements."></textarea>
-      <button type="submit">Send Enquiry</button>
+    <form action="https://formspree.io/f/mnqwwxyz" method="POST">
+      <label for="name">Your Name</label>
+      <input type="text" name="name" id="name" placeholder="Your Name" required>
+
+      <label for="email">Your Email</label>
+      <input type="email" name="email" id="email" placeholder="Your Email" required>
+
+      <label for="arrival">Arrival Date</label>
+      <input type="date" name="arrival" id="arrival" required>
+
+      <label for="departure">Departure Date</label>
+      <input type="date" name="departure" id="departure" required>
+
+      <label for="guests">Number of Guests</label>
+      <input type="number" name="guests" id="guests" min="1" max="6" required>
+
+      <label for="dog">Bringing a Dog?</label>
+      <select name="dog" id="dog">
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+      </select>
+
+      <label for="message">Message</label>
+      <textarea name="message" id="message" rows="5" placeholder="Tell us anything else you'd like us to know."></textarea>
+
+      <button type="submit">Send Booking Request</button>
     </form>
   </section>
   <footer>
