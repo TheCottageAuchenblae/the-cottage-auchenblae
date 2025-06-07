@@ -32,6 +32,7 @@
       margin-top: 0.5rem;
       color: #666;
     }
+
     .hero-carousel {
       position: relative;
       width: 100%;
@@ -42,7 +43,7 @@
       width: 100%;
       height: 100vh;
       object-fit: contain;
-  background-color: #000;
+      background-color: #000;
       position: absolute;
       top: 0;
       left: 0;
@@ -53,41 +54,39 @@
       opacity: 1;
       z-index: 1;
     }
-    section.description {
-      padding: 2rem 1rem;
+
+    section.description, .booking-form, .calendar, .pricing {
+      padding: 2rem;
       max-width: 800px;
       margin: auto;
     }
+
     .calendar {
-      padding: 2rem 1rem;
       background-color: #f4f4f4;
       text-align: center;
     }
+
     #calendar {
       max-width: 800px;
       margin: auto;
     }
-    .booking-form {
-      padding: 2rem 1rem;
-      max-width: 600px;
-      margin: auto;
-    }
-    .booking-form h2 {
-      text-align: center;
-    }
+
     .booking-form form {
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
+
     .booking-form input, .booking-form textarea, .booking-form select {
       padding: 0.75rem;
       border: 1px solid #ccc;
       border-radius: 6px;
     }
+
     .booking-form label {
       font-weight: bold;
     }
+
     .booking-form button {
       background-color: #e6b800;
       color: white;
@@ -97,19 +96,40 @@
       font-size: 1rem;
       cursor: pointer;
     }
+
     .booking-form button:hover {
       background-color: #cc9900;
     }
-    .map {
-      padding: 2rem 1rem;
-      background-color: #fefefe;
+
+    .pricing-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
     }
-    .map iframe {
-      width: 100%;
-      height: 450px;
-      border: 0;
-      display: block;
+
+    .pricing-box {
+      border: 1px solid #ccc;
+      padding: 1.5rem;
+      border-radius: 8px;
+      max-width: 250px;
     }
+
+    .pricing-box h3 {
+      margin-top: 0;
+    }
+
+    .pricing-box button {
+      background-color: #635bff;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.25rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
     footer {
       background-color: #f8f2eb;
       text-align: center;
@@ -169,11 +189,26 @@
     </form>
   </section>
 
-  <section class="map">
-    <h2 style="text-align:center;">Find Us</h2>
-    <p style="text-align:center;">Explore the area around The Cottage Auchenblae:</p>
-    <div style="max-width: 900px; margin: auto;">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1052.5617294999624!2d-2.4507256483290796!3d56.8993094326427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sCedar%20house%20kintore%20street!5e1!3m2!1sen!2suk!4v1749304252353!5m2!1sen!2suk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <section class="pricing">
+    <h2>Pricing</h2>
+    <p>Simple, transparent pricing with no hidden fees.</p>
+    <div class="pricing-container">
+      <div class="pricing-box">
+        <h3>2-Night Stay</h3>
+        <p><strong>£240</strong></p>
+        <p>Perfect for a weekend getaway.</p>
+        <a href="https://buy.stripe.com/test_4gwcPQ3Oj3GJaJm4gh" target="_blank">
+          <button>Pay Now</button>
+        </a>
+      </div>
+      <div class="pricing-box">
+        <h3>3-Night Stay</h3>
+        <p><strong>£340</strong></p>
+        <p>Includes early check-in and pets stay free.</p>
+        <a href="https://buy.stripe.com/test_00g7vXdeXbrIeZi5kn" target="_blank">
+          <button>Pay Now</button>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -191,6 +226,7 @@
           const jcalData = ICAL.parse(data);
           const comp = new ICAL.Component(jcalData);
           const vevents = comp.getAllSubcomponents('vevent');
+
           const events = vevents.map(vevent => {
             const event = new ICAL.Event(vevent);
             return {
@@ -201,6 +237,7 @@
               color: '#e60000'
             };
           });
+
           const calendarEl = document.getElementById('calendar');
           const calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
