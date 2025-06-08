@@ -98,9 +98,13 @@ $1
     }
 
     #calendar {
-      max-width: 800px;
-      margin: auto;
-    }
+  max-width: 800px;
+  margin: auto;
+  padding: 1rem;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
 
     .booking-form form {
       display: flex;
@@ -299,20 +303,21 @@ $1
           const vevents = comp.getAllSubcomponents('vevent');
 
           const events = vevents.map(vevent => {
-            const event = new ICAL.Event(vevent);
-            return {
-              title: 'Booked',
-              start: event.startDate.toJSDate(),
-              end: event.endDate.toJSDate(),
-              allDay: true,
-              color: '#e60000'
-            };
-          });
+  const event = new ICAL.Event(vevent);
+  return {
+    title: 'Booked',
+    start: event.startDate.toJSDate(),
+    end: event.endDate.toJSDate(),
+    allDay: true,
+    color: '#e60000'
+  };
+});
+console.log('Loaded events:', events);
 
           const calendarEl = document.getElementById('calendar');
           const calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
-            height: 600,
+            height: 'auto', contentHeight: 600,
             events: events
           });
           calendar.render();
