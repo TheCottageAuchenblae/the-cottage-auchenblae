@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Cottage Auchenblae</title>
-  <meta name="description" content="Pet-friendly self-catering accommodation in the heart of Aberdeenshire. Ideal for couples, walkers, and weekend breaks. Book direct and save over Airbnb.">
 
-  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -45,7 +43,6 @@
   }
   </script>
 
-  <!-- Calendar dependencies -->
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ical.js/1.4.0/ical.min.js" defer></script>
@@ -164,7 +161,7 @@
       margin-top: 0;
     }
 
-    .pricing-box button {
+    .pricing-box a button {
       background-color: #635bff;
       color: white;
       border: none;
@@ -172,6 +169,11 @@
       border-radius: 6px;
       font-size: 1rem;
       cursor: pointer;
+      width: 100%;
+    }
+
+    .pricing-box a button:hover {
+      background-color: #5147cc;
     }
 
     footer {
@@ -195,114 +197,53 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>The Cottage Auchenblae</h1>
-    <p>"Nestled between the Cairngorm mountains and the sandy shores of the North East"</p>
-  </header>
-
-  <div class="hero-carousel">
-    <img src="hero1.jpg" class="active" alt="Hero image 1" />
-    <img src="hero2.jpg" alt="Hero image 2" />
-    <img src="hero3.jpg" alt="Hero image 3" />
-    <img src="hero4.jpg" alt="Hero image 4" />
-    <img src="hero5.jpg" alt="Hero image 5" />
-  </div>
-
-  <section class="description">
-    <h2>Welcome</h2>
-    <p>
-      A peaceful, pet-friendly escape in the heart of Aberdeenshire. The Cottage Auchenblae offers a cosy getaway for couples and their four-legged friends. With stunning walks, local distilleries, and beautiful coastlines nearby, it's the perfect base to explore Scotland.
-    </p>
-  </section>
-
-  <section class="calendar">
-    <h2>Availability Calendar</h2>
-    <p>View available dates below (synced from Airbnb):</p>
-    <div id='calendar'></div>
-  </section>
-
-  <section class="booking-form">
-    <h2>Make a Booking Enquiry</h2>
-    <form action="https://formspree.io/f/mnqwwxyz" method="POST">
-      <label for="name">Your Name</label>
-      <input type="text" name="name" id="name" required>
-      <label for="email">Your Email</label>
-      <input type="email" name="email" id="email" required>
-      <label for="arrival">Arrival Date</label>
-      <input type="date" name="arrival" id="arrival" required>
-      <label for="departure">Departure Date</label>
-      <input type="date" name="departure" id="departure" required>
-      <label for="guests">Number of Guests</label>
-      <input type="number" name="guests" id="guests" min="1" max="6" required>
-      <label for="dog">Bringing a Dog?</label>
-      <select name="dog" id="dog">
-        <option value="No">No</option>
-        <option value="Yes">Yes</option>
-      </select>
-      <label for="message">Message</label>
-      <textarea name="message" id="message" rows="5"></textarea>
-      <button type="submit">Send Booking Request</button>
-    </form>
-  </section>
-
   <section class="pricing">
     <h2>Pricing</h2>
     <p>Simple, transparent pricing with no hidden fees.</p>
-
     <div class="pricing-container">
-      <!-- Stripe buttons remain unchanged -->
-      <!-- All pricing boxes as you provided -->
+      <div class="pricing-box">
+        <h3>1-Night Stay</h3>
+        <p><strong>£110</strong></p>
+        <p>Great for a quick stopover.</p>
+        <a href="https://book.stripe.com/test_aFabJ26qJ2SW3f3fZagnK00"><button>Pay Now</button></a>
+      </div>
+      <div class="pricing-box">
+        <h3>2-Night Stay</h3>
+        <p><strong>£205</strong></p>
+        <p>Perfect for a weekend getaway.</p>
+        <a href="https://book.stripe.com/test_00wbJ26qJ9hk16VbIUgnK01"><button>Pay Now</button></a>
+      </div>
+      <div class="pricing-box">
+        <h3>3-Night Stay</h3>
+        <p><strong>£300</strong></p>
+        <p>Treat yourself to a proper break.</p>
+        <a href="https://book.stripe.com/test_5kQcN69CV9hk16VcMYgnK02"><button>Pay Now</button></a>
+      </div>
+      <div class="pricing-box">
+        <h3>4-Night Stay</h3>
+        <p><strong>£400</strong></p>
+        <p>Extended comfort at a reduced rate.</p>
+        <a href="https://book.stripe.com/test_6oU4gAaGZeBE5nbeV6gnK03"><button>Pay Now</button></a>
+      </div>
+      <div class="pricing-box">
+        <h3>5-Night Stay</h3>
+        <p><strong>£495</strong></p>
+        <p>Enough time to take it all in.</p>
+        <a href="https://book.stripe.com/test_bJe3cwg1j1OS7vjaEQgnK04"><button>Pay Now</button></a>
+      </div>
+      <div class="pricing-box">
+        <h3>6-Night Stay</h3>
+        <p><strong>£590</strong></p>
+        <p>Ideal for travellers and remote workers.</p>
+        <a href="https://book.stripe.com/test_28EdRa5mFfFI7vj00cgnK05"><button>Pay Now</button></a>
+      </div>
+      <div class="pricing-box">
+        <h3>7-Night Stay</h3>
+        <p><strong>£630</strong></p>
+        <p>Full week retreat at a great price.</p>
+        <a href="https://book.stripe.com/test_3cI9AU3ex8dgaHvfZagnK06"><button>Pay Now</button></a>
+      </div>
     </div>
   </section>
-
-  <footer>
-    &copy; 2025 The Cottage Auchenblae. All rights reserved.
-  </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const proxyUrl = 'https://corsproxy.io/?';
-      const icalUrl = 'https://www.airbnb.co.uk/calendar/ical/770028233462793407.ics?s=1119439d69cfa8e9c91961d6762542a6';
-      fetch(proxyUrl + encodeURIComponent(icalUrl))
-        .then(response => response.text())
-        .then(data => {
-          const jcalData = ICAL.parse(data);
-          const comp = new ICAL.Component(jcalData);
-          const vevents = comp.getAllSubcomponents('vevent');
-
-          const events = vevents.map(vevent => {
-            const event = new ICAL.Event(vevent);
-            return {
-              title: 'Booked',
-              start: event.startDate.toJSDate(),
-              end: event.endDate.toJSDate(),
-              allDay: true,
-              color: '#e60000'
-            };
-          });
-
-          const calendarEl = document.getElementById('calendar');
-          const calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            height: 'auto',
-            contentHeight: 600,
-            events: events
-          });
-          calendar.render();
-        })
-        .catch(error => {
-          document.getElementById('calendar').innerHTML = '<p style="color: red;">Failed to load calendar.</p>';
-          console.error('Calendar fetch error:', error);
-        });
-
-      const heroImages = document.querySelectorAll('.hero-carousel img');
-      let heroIndex = 0;
-      setInterval(() => {
-        heroImages[heroIndex].classList.remove('active');
-        heroIndex = (heroIndex + 1) % heroImages.length;
-        heroImages[heroIndex].classList.add('active');
-      }, 4000);
-    });
-  </script>
 </body>
 </html>
