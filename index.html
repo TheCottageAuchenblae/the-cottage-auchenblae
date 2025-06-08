@@ -217,26 +217,36 @@
 
   <section class="booking-form">
     <h2>Make a Booking Enquiry</h2>
-    <form action="https://formspree.io/f/xldnjgee" method="POST">
-      <label for="name">Your Name</label>
-      <input type="text" name="name" id="name" required>
-      <label for="email">Your Email</label>
-      <input type="email" name="email" id="email" required>
-      <label for="arrival">Arrival Date</label>
-      <input type="date" name="arrival" id="arrival" required>
-      <label for="departure">Departure Date</label>
-      <input type="date" name="departure" id="departure" required>
-      <label for="guests">Number of Guests</label>
-      <input type="number" name="guests" id="guests" min="1" max="6" required>
-      <label for="dog">Bringing a Dog?</label>
-      <select name="dog" id="dog">
-        <option value="No">No</option>
-        <option value="Yes">Yes</option>
-      </select>
-      <label for="message">Message</label>
-      <textarea name="message" id="message" rows="5"></textarea>
-      <button type="submit">Send Booking Request</button>
-    </form>
+ <form action="https://formspree.io/f/xldnjgee" method="POST">
+  <input type="hidden" name="_subject" value="New booking request from The Cottage Auchenblae">
+
+  <label for="name">Your Name</label>
+  <input type="text" name="name" id="name" required>
+
+  <label for="email">Your Email</label>
+  <input type="email" name="email" id="email" required>
+
+  <label for="arrival">Arrival Date</label>
+  <input type="date" name="arrival" id="arrival" required>
+
+  <label for="departure">Departure Date</label>
+  <input type="date" name="departure" id="departure" required>
+
+  <label for="guests">Number of Guests</label>
+  <input type="number" name="guests" id="guests" min="1" max="6" required>
+
+  <label for="dog">Bringing a Dog?</label>
+  <select name="dog" id="dog">
+    <option value="No">No</option>
+    <option value="Yes">Yes</option>
+  </select>
+
+  <label for="message">Message</label>
+  <textarea name="message" id="message" rows="5"></textarea>
+
+  <button type="submit">Send Booking Request</button>
+</form>
+
   </section>
   <div style="text-align: center; margin: 2rem 0;">
   <p style="font-size: 0.95rem; color: #666; margin-bottom: 1rem;">
