@@ -2,46 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Cottage Auchenblae</title>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LodgingBusiness",
-    "name": "The Cottage Auchenblae",
-    "description": "Pet-friendly self-catering accommodation in the heart of Aberdeenshire. Ideal for couples, walkers, and weekend breaks.",
-    "image": "https://thecottageauchenblae.com/hero1.jpg",
-    "priceRange": "£110-£630",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Main Street",
-      "addressLocality": "Auchenblae",
-      "addressRegion": "Aberdeenshire",
-      "postalCode": "AB30",
-      "addressCountry": "GB"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 56.879,
-      "longitude": -2.529
-    },
-    "telephone": "+44 1234 567890",
-    "url": "https://thecottageauchenblae.com",
-    "amenityFeature": [
-      {
-        "@type": "LocationFeatureSpecification",
-        "name": "Pet-friendly",
-        "value": true
-      },
-      {
-        "@type": "LocationFeatureSpecification",
-        "name": "Free parking",
-        "value": true
-      }
-    ]
-  }
-  </script>
 
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js" defer></script>
@@ -105,10 +67,6 @@
     #calendar {
       max-width: 800px;
       margin: auto;
-      padding: 1rem;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 8px;
     }
 
     .booking-form form {
@@ -161,7 +119,7 @@
       margin-top: 0;
     }
 
-    .pricing-box a button {
+    .pricing-box button {
       background-color: #635bff;
       color: white;
       border: none;
@@ -169,11 +127,6 @@
       border-radius: 6px;
       font-size: 1rem;
       cursor: pointer;
-      width: 100%;
-    }
-
-    .pricing-box a button:hover {
-      background-color: #5147cc;
     }
 
     footer {
@@ -197,9 +150,60 @@
   </style>
 </head>
 <body>
+  <header>
+    <h1>The Cottage Auchenblae</h1>
+    <p>"Nestled between the Cairngorm mountains and the sandy shores of the North East"</p>
+  </header>
+
+  <div class="hero-carousel">
+    <img src="hero1.jpg" class="active" alt="Hero image 1" />
+    <img src="hero2.jpg" alt="Hero image 2" />
+    <img src="hero3.jpg" alt="Hero image 3" />
+    <img src="hero4.jpg" alt="Hero image 4" />
+    <img src="hero5.jpg" alt="Hero image 5" />
+  </div>
+
+  <section class="description">
+    <h2>Welcome</h2>
+    <p>
+      A peaceful, pet-friendly escape in the heart of Aberdeenshire. The Cottage Auchenblae offers a cosy getaway for couples and their four-legged friends. With stunning walks, local distilleries, and beautiful coastlines nearby, it's the perfect base to explore Scotland.
+    </p>
+  </section>
+
+  <section class="calendar">
+    <h2>Availability Calendar</h2>
+    <p>View available dates below (synced from Airbnb):</p>
+    <div id='calendar'></div>
+  </section>
+
+  <section class="booking-form">
+    <h2>Make a Booking Enquiry</h2>
+    <form action="https://formspree.io/f/mnqwwxyz" method="POST">
+      <label for="name">Your Name</label>
+      <input type="text" name="name" id="name" required>
+      <label for="email">Your Email</label>
+      <input type="email" name="email" id="email" required>
+      <label for="arrival">Arrival Date</label>
+      <input type="date" name="arrival" id="arrival" required>
+      <label for="departure">Departure Date</label>
+      <input type="date" name="departure" id="departure" required>
+      <label for="guests">Number of Guests</label>
+      <input type="number" name="guests" id="guests" min="1" max="6" required>
+      <label for="dog">Bringing a Dog?</label>
+      <select name="dog" id="dog">
+        <option value="No">No</option>
+        <option value="Yes">Yes</option>
+      </select>
+      <label for="message">Message</label>
+      <textarea name="message" id="message" rows="5"></textarea>
+      <button type="submit">Send Booking Request</button>
+    </form>
+  </section>
+
   <section class="pricing">
     <h2>Pricing</h2>
     <p>Simple, transparent pricing with no hidden fees.</p>
+    
     <div class="pricing-container">
       <div class="pricing-box">
         <h3>1-Night Stay</h3>
@@ -245,5 +249,54 @@
       </div>
     </div>
   </section>
+
+  <footer>
+    &copy; 2025 The Cottage Auchenblae. All rights reserved.
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const proxyUrl = 'https://corsproxy.io/?';
+      const icalUrl = 'https://www.airbnb.co.uk/calendar/ical/770028233462793407.ics?s=1119439d69cfa8e9c91961d6762542a6';
+      fetch(proxyUrl + encodeURIComponent(icalUrl))
+        .then(response => response.text())
+        .then(data => {
+          const jcalData = ICAL.parse(data);
+          const comp = new ICAL.Component(jcalData);
+          const vevents = comp.getAllSubcomponents('vevent');
+
+          const events = vevents.map(vevent => {
+            const event = new ICAL.Event(vevent);
+            return {
+              title: 'Booked',
+              start: event.startDate.toJSDate(),
+              end: event.endDate.toJSDate(),
+              allDay: true,
+              color: '#e60000'
+            };
+          });
+
+          const calendarEl = document.getElementById('calendar');
+          const calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            height: 600,
+            events: events
+          });
+          calendar.render();
+        })
+        .catch(error => {
+          document.getElementById('calendar').innerHTML = '<p style="color: red;">Failed to load calendar.</p>';
+          console.error('Calendar fetch error:', error);
+        });
+
+      const heroImages = document.querySelectorAll('.hero-carousel img');
+      let heroIndex = 0;
+      setInterval(() => {
+        heroImages[heroIndex].classList.remove('active');
+        heroIndex = (heroIndex + 1) % heroImages.length;
+        heroImages[heroIndex].classList.add('active');
+      }, 4000);
+    });
+  </script>
 </body>
 </html>
