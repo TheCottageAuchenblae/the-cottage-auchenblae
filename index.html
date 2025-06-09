@@ -359,14 +359,37 @@
           console.error('Calendar fetch error:', error);
         });
 
-      const heroImages = document.querySelectorAll('.hero-carousel img');
-      let heroIndex = 0;
-      setInterval(() => {
-        heroImages[heroIndex].classList.remove('active');
-        heroIndex = (heroIndex + 1) % heroImages.length;
-        heroImages[heroIndex].classList.add('active');
-      }, 4000);
-    });
-  </script>
+     <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const heroImages = document.querySelectorAll('.hero-carousel img');
+    let heroIndex = 0;
+
+    function showImage(index) {
+      heroImages.forEach(img => img.classList.remove('active'));
+      heroImages[index].classList.add('active');
+    }
+
+    function nextImage() {
+      heroIndex = (heroIndex + 1) % heroImages.length;
+      showImage(heroIndex);
+    }
+
+    function prevImage() {
+      heroIndex = (heroIndex - 1 + heroImages.length) % heroImages.length;
+      showImage(heroIndex);
+    }
+
+    // Initial image display
+    showImage(heroIndex);
+
+    // Auto-scroll every 4 seconds
+    setInterval(nextImage, 4000);
+
+    // Navigation buttons
+    document.getElementById('nextBtn').addEventListener('click', nextImage);
+    document.getElementById('prevBtn').addEventListener('click', prevImage);
+  });
+</script>
+
 </body>
 </html>
