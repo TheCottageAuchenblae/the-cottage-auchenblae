@@ -325,42 +325,43 @@
   </footer>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const proxyUrl = 'https://corsproxy.io/?';
-      const icalUrl = 'https://www.airbnb.co.uk/calendar/ical/770028233462793407.ics?s=1119439d69cfa8e9c91961d6762542a6';
-      fetch(proxyUrl + encodeURIComponent(icalUrl))
-        .then(response => response.text())
-        .then(data => {
-          const jcalData = ICAL.parse(data);
-          const comp = new ICAL.Component(jcalData);
-          const vevents = comp.getAllSubcomponents('vevent');
+  document.addEventListener('DOMContentLoaded', function () {
+    // --- Airbnb iCal Fetch and Calendar Setup ---
+    const proxyUrl = 'https://corsproxy.io/?';
+    const icalUrl = 'https://www.airbnb.co.uk/calendar/ical/770028233462793407.ics?s=1119439d69cfa8e9c91961d6762542a6';
 
-          const events = vevents.map(vevent => {
-            const event = new ICAL.Event(vevent);
-            return {
-              title: 'Booked',
-              start: event.startDate.toJSDate(),
-              end: event.endDate.toJSDate(),
-              allDay: true,
-              color: '#e60000'
-            };
-          });
+    fetch(proxyUrl + encodeURIComponent(icalUrl))
+      .then(response => response.text())
+      .then(data => {
+        const jcalData = ICAL.parse(data);
+        const comp = new ICAL.Component(jcalData);
+        const vevents = comp.getAllSubcomponents('vevent');
 
-          const calendarEl = document.getElementById('calendar');
-          const calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            height: 600,
-            events: events
-          });
-          calendar.render();
-        })
-        .catch(error => {
-          document.getElementById('calendar').innerHTML = '<p style="color: red;">Failed to load calendar.</p>';
-          console.error('Calendar fetch error:', error);
+        const events = vevents.map(vevent => {
+          const event = new ICAL.Event(vevent);
+          return {
+            title: 'Booked',
+            start: event.startDate.toJSDate(),
+            end: event.endDate.toJSDate(),
+            allDay: true,
+            color: '#e60000'
+          };
         });
 
-     <script>
-  document.addEventListener('DOMContentLoaded', function () {
+        const calendarEl = document.getElementById('calendar');
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          height: 600,
+          events: events
+        });
+        calendar.render();
+      })
+      .catch(error => {
+        document.getElementById('calendar').innerHTML = '<p style="color: red;">Failed to load calendar.</p>';
+        console.error('Calendar fetch error:', error);
+      });
+
+    // --- Hero Image Carousel Setup ---
     const heroImages = document.querySelectorAll('.hero-carousel img');
     let heroIndex = 0;
 
@@ -386,10 +387,15 @@
     setInterval(nextImage, 4000);
 
     // Navigation buttons
-    document.getElementById('nextBtn').addEventListener('click', nextImage);
-    document.getElementById('prevBtn').addEventListener('click', prevImage);
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    if (nextBtn && prevBtn) {
+      nextBtn.addEventListener('click', nextImage);
+      prevBtn.addEventListener('click', prevImage);
+    }
   });
 </script>
+
 
 </body>
 </html>
