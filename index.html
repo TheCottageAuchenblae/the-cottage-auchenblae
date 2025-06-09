@@ -192,13 +192,54 @@
     <p>"Nestled between the Cairngorm mountains and the sandy shores of the North East"</p>
   </header>
 
-  <div class="hero-carousel">
-    <img src="hero1.jpg" class="active" alt="Hero image 1" />
-    <img src="hero2.jpg" alt="Hero image 2" />
-    <img src="hero3.jpg" alt="Hero image 3" />
-    <img src="hero4.jpg" alt="Hero image 4" />
-    <img src="hero5.jpg" alt="Hero image 5" />
+ <!-- ✅ Image Gallery with Thumbnails -->
+<div class="hero-carousel">
+  <img src="hero1.jpg" class="main-image" id="mainImage" alt="Main Cottage Image" />
+  <div class="thumbnail-gallery">
+    <img src="hero1.jpg" alt="Thumbnail 1" onclick="changeMainImage(this.src)">
+    <img src="hero2.jpg" alt="Thumbnail 2" onclick="changeMainImage(this.src)">
+    <img src="hero3.jpg" alt="Thumbnail 3" onclick="changeMainImage(this.src)">
+    <img src="hero4.jpg" alt="Thumbnail 4" onclick="changeMainImage(this.src)">
+    <img src="hero5.jpg" alt="Thumbnail 5" onclick="changeMainImage(this.src)">
   </div>
+</div>
+
+<style>
+  .hero-carousel {
+    text-align: center;
+    background-color: #000;
+    padding: 1rem;
+  }
+  .hero-carousel .main-image {
+    width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    margin-bottom: 1rem;
+  }
+  .thumbnail-gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .thumbnail-gallery img {
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  .thumbnail-gallery img:hover {
+    border-color: #e6b800;
+  }
+</style>
+
+<script>
+  function changeMainImage(src) {
+    document.getElementById('mainImage').src = src;
+  }
+</script>
+
 
   <section class="description">
     <h2>Welcome</h2>
