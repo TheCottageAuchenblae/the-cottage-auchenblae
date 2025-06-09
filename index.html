@@ -422,14 +422,6 @@
           console.error('Calendar fetch error:', error);
         });
 
-      const heroImages = document.querySelectorAll('.hero-carousel img');
-      let heroIndex = 0;
-      setInterval(() => {
-        heroImages[heroIndex].classList.remove('active');
-        heroIndex = (heroIndex + 1) % heroImages.length;
-        heroImages[heroIndex].classList.add('active');
-      }, 4000);
-    });
   </script>
 </body>
 </html>
